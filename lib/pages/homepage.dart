@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> {
     if (!locationAlwaysStatus.isGranted) {
       await Permission.locationAlways.request();
       if (!(await Permission.locationAlways.status).isGranted) {
-        AppSettings.openAppSettings(type: AppSettingsType.location);
+        /*AppSettings.openAppSettings(type: AppSettingsType.location);*/
         return false;
       }
     }
@@ -88,24 +88,26 @@ class _HomePageState extends State<HomePage> {
     if (!locationStatus.isGranted) {
       await Permission.location.request();
       if (!(await Permission.location.status).isGranted) {
-        AppSettings.openAppSettings(type: AppSettingsType.location);
+        /*AppSettings.openAppSettings(type: AppSettingsType.location);*/
         return false;
       }
     }
-    if (!phoneStatus.isGranted) {
-      await Permission.phone.request();
+    if (!microphoneStatus.isGranted) {
+      await Permission.microphone.request();
     }
 
     return true;
   }
 
   void _startListening() async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 3));
     try {
-      var permissionStatus = await _requestPermission();
-      if (permissionStatus) {
+      var microphoneStatus = await _requestPermission();
+      if (microphoneStatus) {
         _speech.listen(
           onResult: (result) {
+            print(result.recognizedWords);
+            print(result.finalResult);
             if (result.finalResult) {
               if (result.recognizedWords.toLowerCase() == 'iyiyim') {
                 Navigator.of(context).popUntil((route) => route.isFirst);

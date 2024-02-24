@@ -86,7 +86,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff87D793)),
         useMaterial3: true,
       ),
-      home: const /*CheckUserLoggedInOrNot()*/ HomePage(),
+      home: const CheckUserLoggedInOrNot(),
     );
   }
 }

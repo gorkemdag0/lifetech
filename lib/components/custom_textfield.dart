@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
-
+//olası araç yolculuğundan araçtakilerin tcsi
 class CustomTextField extends StatefulWidget {
   final TextEditingController controller;
   final String hintText;
